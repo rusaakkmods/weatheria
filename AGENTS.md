@@ -61,6 +61,55 @@ Business logic belongs in Domain or Application, not controllers.
 
 ---
 
+## Repository Guidelines
+
+Use focused repository interfaces for application-owned persistent data.
+
+Example:
+
+IWeatherNoteRepository
+
+Do not introduce generic repository abstractions such as:
+
+- IRepository<T>
+- GenericRepository<T>
+- RepositoryFactory
+- UnitOfWork
+
+unless a concrete requirement demonstrates that they are necessary.
+
+Repositories should expose only operations required by the application's use cases.
+
+---
+
+## Persistence Strategy
+
+Weatheria intentionally distinguishes reference data from application-owned persistent data.
+
+Countries and cities are reference/catalog data and are not persisted in SQLite.
+
+They should be provided through a catalog abstraction, for example:
+
+ICountryCatalog
+    ↓
+CountryCatalog
+
+Do not introduce EF Core entities, repositories, database tables, or migrations for countries/cities unless explicitly required.
+
+Weather notes are application-owned persistent data and use:
+
+IWeatherNoteRepository
+    ↓
+WeatherNoteRepository
+    ↓
+EF Core
+    ↓
+SQLite
+
+This is an intentional design decision. Production quality does not require every model to be persisted; persistence should be applied where the application owns the data lifecycle.
+
+---
+
 ## CQRS
 
 Use CQRS through MediatR.

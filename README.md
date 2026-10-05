@@ -26,20 +26,20 @@ The goal is not to build a large production platform. The goal is to deliver the
 | Architecture | ✅ | Onion Architecture + CQRS |
 | Development strategy | ✅ | Pragmatic TDD |
 | Technology stack | ✅ | .NET 9 / ASP.NET Core |
-| Project structure | 🟡 | Being implemented |
-| Domain layer | 🟡 | TDD implementation |
-| Application / CQRS | 🟡 | TDD implementation |
-| Infrastructure | 🟡 | TDD implementation |
-| EF Core persistence | 🟡 | SQLite |
-| OpenWeather integration | 🟡 | Behind `IWeatherService` |
-| API | 🟡 | Required endpoints |
+| Project structure | ✅ | Single .NET project with logical architecture folders |
+| Domain layer | ✅ | `WeatherNote` and temperature conversion covered by tests |
+| Application / CQRS | 🟡 | Create Weather Note implemented; remaining queries pending |
+| Infrastructure | 🟡 | Persistence implemented; weather/catalog adapters pending |
+| EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + integration test |
+| OpenWeather integration | ⬜ | `IWeatherService` boundary planned |
+| API | 🟡 | `POST /api/weather/notes` implemented and integration-tested |
 | Frontend | ⬜ | Planned |
-| Automated tests | 🟡 | Built continuously using TDD |
-| Offline test execution | 🟡 | No live weather API calls in tests |
-| GitHub repository | 🟡 | Planned |
+| Automated tests | 🟡 | Unit, application, persistence, and API tests built continuously |
+| Offline test execution | ✅ | Current tests do not require live weather API access |
+| GitHub repository | 🟡 | Repository setup in progress |
 | GitHub Actions CI | ⬜ | Planned |
 | Deployment | ⬜ | Planned |
-| Documentation | 🟡 | README + `AGENTS.md` |
+| Documentation | 🟡 | README + `AGENTS.md`; updated as implementation progresses |
 
 ### Status Legend
 
@@ -902,10 +902,10 @@ The application will expose the API and frontend according to the configured ASP
 
 | Method | Endpoint | Purpose | Status |
 |---|---|---|:---:|
-| GET | `/api/countries` | Retrieve available countries | 🟡 |
-| GET | `/api/countries/{countryCode}/cities` | Retrieve cities for a country | 🟡 |
-| GET | `/api/weather/{cityName}` | Retrieve current weather | 🟡 |
-| POST | `/api/weather/notes` | Save a weather note | 🟡 |
+| GET | `/api/countries` | Retrieve available countries | ⬜ |
+| GET | `/api/countries/{countryCode}/cities` | Retrieve cities for a country | ⬜ |
+| GET | `/api/weather/{cityName}` | Retrieve current weather | ⬜ |
+| POST | `/api/weather/notes` | Save a weather note | ✅ |
 
 ---
 
@@ -968,6 +968,28 @@ This keeps local development and deployment simple while still demonstrating rea
 The assessment requires country and city selection but does not require a geographic database.
 
 A small static catalog satisfies the requirement without spending the limited implementation time building unrelated geographic infrastructure.
+
+---
+
+## Repository Strategy
+
+Weatheria uses focused repository abstractions only where application-owned data requires persistence.
+
+For example:
+
+```text
+IWeatherNoteRepository
+        ↓
+WeatherNoteRepository
+        ↓
+EF Core
+        ↓
+SQLite
+```
+
+The project intentionally does **not** introduce a generic repository abstraction such as `IRepository<T>`, a generic repository implementation, or a Unit of Work abstraction. These patterns would add indirection without solving a current requirement.
+
+Repositories should expose only the operations required by the application's use cases.
 
 ---
 
