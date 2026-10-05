@@ -25,6 +25,13 @@
                 </select>
                 <p class="status" id="country-status" role="status" aria-live="polite">Loading countries...</p>
             </div>
+            <div class="city-picker">
+                <label for="city-select">City</label>
+                <select id="city-select" name="city" aria-describedby="city-status" disabled>
+                    <option value="">Select a country first</option>
+                </select>
+                <p class="status" id="city-status" role="status" aria-live="polite">Select a country first.</p>
+            </div>
         </section>
 
         <footer class="footer">Application shell</footer>

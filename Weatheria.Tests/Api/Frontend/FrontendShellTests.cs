@@ -20,6 +20,8 @@ public class FrontendShellTests
         page.Should().Contain("Weatheria");
         page.Should().Contain("for=\"country-select\">Country</label>");
         page.Should().Contain("<option value=\"\">Select a country</option>");
+        page.Should().Contain("for=\"city-select\">City</label>");
+        page.Should().Contain("<option value=\"\">Select a country first</option>");
         page.Should().Contain("/styles.css");
         page.Should().Contain("/app.js");
 
