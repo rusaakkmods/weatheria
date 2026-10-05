@@ -30,7 +30,7 @@ The goal is not to build a large production platform. The goal is to deliver the
 | Domain layer | ✅ | `WeatherNote` and temperature conversion covered by tests |
 | Application / CQRS | ✅ | Create Weather Note command and country, city, and weather queries implemented |
 | Infrastructure | ✅ | SQLite persistence, static country/city catalog, and typed OpenWeather client implemented |
-| EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + repository and command-handler persistence tests |
+| EF Core persistence | ✅ | SQLite initial migration applied at startup + repository and command-handler persistence tests |
 | OpenWeather integration | ✅ | Typed client implemented; configure `OpenWeather:ApiKey` before live use |
 | API | ✅ | Country/city/weather reads and `POST /api/weather/notes` implemented and integration-tested |
 | Frontend | ✅ | Country → City → Weather → Save Weather Note flow implemented; favorites are not implemented |
@@ -491,6 +491,8 @@ Important edge cases include:
 # Persistence
 
 Weatheria uses **Entity Framework Core with SQLite** for persistence.
+
+The SQLite connection string is configured as `ConnectionStrings:Weatheria` in `appsettings.json`. The schema is managed through EF Core migrations; the application applies pending migrations at startup. The initial migration creates the `WeatherNotes` table.
 
 Only the weather note requires persistent storage in the initial scope.
 

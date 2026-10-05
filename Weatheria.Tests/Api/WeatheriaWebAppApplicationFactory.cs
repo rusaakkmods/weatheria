@@ -38,12 +38,6 @@ public sealed class WeatheriaWebApplicationFactory : WebApplicationFactory<Progr
             _connection.Open();
 
             services.AddDbContext<WeatheriaDbContext>(options => options.UseSqlite(_connection));
-
-            using var scope = services.BuildServiceProvider().CreateScope();
-            var db = scope.ServiceProvider.GetRequiredService<WeatheriaDbContext>();
-
-            db.Database.EnsureCreated();
-
         });
 
         if (_weatherService is not null)
