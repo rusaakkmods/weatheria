@@ -28,11 +28,11 @@ The goal is not to build a large production platform. The goal is to deliver the
 | Technology stack | ✅ | .NET 9 / ASP.NET Core |
 | Project structure | ✅ | Single .NET project with logical architecture folders |
 | Domain layer | ✅ | `WeatherNote` and temperature conversion covered by tests |
-| Application / CQRS | 🟡 | Create Weather Note, Get Countries, and Get Cities implemented; weather query pending |
-| Infrastructure | 🟡 | SQLite persistence and static country/city catalog implemented; weather adapter pending |
+| Application / CQRS | 🟡 | Create Weather Note and country, city, and weather queries implemented |
+| Infrastructure | 🟡 | SQLite persistence, static country/city catalog, and typed OpenWeather client implemented |
 | EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + integration test |
-| OpenWeather integration | ⬜ | `IWeatherService` boundary planned |
-| API | 🟡 | Country/city reads and `POST /api/weather/notes` implemented and integration-tested |
+| OpenWeather integration | ✅ | Typed client implemented; configure `OpenWeather:ApiKey` before live use |
+| API | 🟡 | Country/city/weather reads and `POST /api/weather/notes` implemented and integration-tested |
 | Frontend | ⬜ | Planned |
 | Automated tests | 🟡 | Unit, application, persistence, and API tests built continuously |
 | Offline test execution | ✅ | Current tests do not require live weather API access |
@@ -461,6 +461,8 @@ The Application layer does not know how OpenWeather works.
 External API response models remain inside Infrastructure and are mapped into Weatheria's own application models.
 
 This allows the external provider implementation to be changed without changing the application use cases.
+
+The Infrastructure adapter calls OpenWeather's current-weather endpoint with imperial units. Set the API key through user secrets or the `OpenWeather__ApiKey` environment variable; `OpenWeather:BaseUrl` can optionally override the default API base URL. The adapter maps the provider payload into Application data and derives Fahrenheit dew point from temperature and relative humidity because the current-weather payload does not include dew point.
 
 ---
 
@@ -904,7 +906,7 @@ The application will expose the API and frontend according to the configured ASP
 |---|---|---|:---:|
 | GET | `/api/countries` | Retrieve available countries | ✅ |
 | GET | `/api/countries/{countryCode}/cities` | Retrieve cities for a country | ✅ |
-| GET | `/api/weather/{cityName}` | Retrieve current weather | ⬜ |
+| GET | `/api/weather/{cityName}` | Retrieve current weather | ✅ |
 | POST | `/api/weather/notes` | Save a weather note | ✅ |
 
 ---
