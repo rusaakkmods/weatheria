@@ -28,11 +28,11 @@ The goal is not to build a large production platform. The goal is to deliver the
 | Technology stack | ✅ | .NET 9 / ASP.NET Core |
 | Project structure | ✅ | Single .NET project with logical architecture folders |
 | Domain layer | ✅ | `WeatherNote` and temperature conversion covered by tests |
-| Application / CQRS | 🟡 | Create Weather Note implemented; remaining queries pending |
-| Infrastructure | 🟡 | Persistence implemented; weather/catalog adapters pending |
+| Application / CQRS | 🟡 | Create Weather Note, Get Countries, and Get Cities implemented; weather query pending |
+| Infrastructure | 🟡 | SQLite persistence and static country/city catalog implemented; weather adapter pending |
 | EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + integration test |
 | OpenWeather integration | ⬜ | `IWeatherService` boundary planned |
-| API | 🟡 | `POST /api/weather/notes` implemented and integration-tested |
+| API | 🟡 | Country/city reads and `POST /api/weather/notes` implemented and integration-tested |
 | Frontend | ⬜ | Planned |
 | Automated tests | 🟡 | Unit, application, persistence, and API tests built continuously |
 | Offline test execution | ✅ | Current tests do not require live weather API access |
@@ -902,8 +902,8 @@ The application will expose the API and frontend according to the configured ASP
 
 | Method | Endpoint | Purpose | Status |
 |---|---|---|:---:|
-| GET | `/api/countries` | Retrieve available countries | ⬜ |
-| GET | `/api/countries/{countryCode}/cities` | Retrieve cities for a country | ⬜ |
+| GET | `/api/countries` | Retrieve available countries | ✅ |
+| GET | `/api/countries/{countryCode}/cities` | Retrieve cities for a country | ✅ |
 | GET | `/api/weather/{cityName}` | Retrieve current weather | ⬜ |
 | POST | `/api/weather/notes` | Save a weather note | ✅ |
 

@@ -15,6 +15,8 @@ public sealed class WeatherNoteRepository(WeatheriaDbContext dbContext) : IWeath
 
     public Task<WeatherNote?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return dbContext.WeatherNotes.SingleOrDefaultAsync(note => note.Id == id, cancellationToken);
+        return dbContext.WeatherNotes
+            .AsNoTracking()
+            .SingleOrDefaultAsync(note => note.Id == id, cancellationToken);
     }
 }

@@ -11,6 +11,31 @@ namespace Weatheria.Tests.Infrastructure.Persistence;
 public class WeatherNoteRepositoryTests
 {
     [Fact]
+    public async Task GetByIdAsync_ShouldReturnWeatherNoteWithoutTracking()
+    {
+        await using var connection = new SqliteConnection("DataSource=:memory:");
+        await connection.OpenAsync();
+
+        var options = new DbContextOptionsBuilder<WeatheriaDbContext>()
+            .UseSqlite(connection)
+            .Options;
+
+        await using var dbContext = new WeatheriaDbContext(options);
+        await dbContext.Database.EnsureCreatedAsync();
+
+        var note = WeatherNote.Create("Bandung", "Hujan Deras");
+        dbContext.WeatherNotes.Add(note);
+        await dbContext.SaveChangesAsync();
+        dbContext.ChangeTracker.Clear();
+
+        var repository = new WeatherNoteRepository(dbContext);
+        var saved = await repository.GetByIdAsync(note.Id, CancellationToken.None);
+
+        saved.Should().NotBeNull();
+        dbContext.Entry(saved!).State.Should().Be(EntityState.Detached);
+    }
+
+    [Fact]
     public async Task AddAsync_ShouldPersistWeatherNote()
     {
         // Arrange
