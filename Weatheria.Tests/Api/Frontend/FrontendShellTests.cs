@@ -18,6 +18,8 @@ public class FrontendShellTests
         pageResponse.Content.Headers.ContentType?.MediaType.Should().Be("text/html");
         var page = await pageResponse.Content.ReadAsStringAsync();
         page.Should().Contain("Weatheria");
+        page.Should().Contain("for=\"country-select\">Country</label>");
+        page.Should().Contain("<option value=\"\">Select a country</option>");
         page.Should().Contain("/styles.css");
         page.Should().Contain("/app.js");
 

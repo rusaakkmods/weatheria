@@ -18,7 +18,13 @@
         <section class="welcome" aria-labelledby="page-title">
             <p class="eyebrow">Weather, observed</p>
             <h1 id="page-title">Weatheria</h1>
-            <p class="status" id="app-status" role="status">Loading frontend...</p>
+            <div class="country-picker">
+                <label for="country-select">Country</label>
+                <select id="country-select" name="country" aria-describedby="country-status" disabled>
+                    <option value="">Select a country</option>
+                </select>
+                <p class="status" id="country-status" role="status" aria-live="polite">Loading countries...</p>
+            </div>
         </section>
 
         <footer class="footer">Application shell</footer>

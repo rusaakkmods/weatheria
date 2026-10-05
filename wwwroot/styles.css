@@ -71,8 +71,38 @@ h1 {
     font-weight: 400;
 }
 
+.country-picker {
+    display: grid;
+    width: min(100%, 440px);
+    gap: 10px;
+    margin-top: 40px;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
+.country-picker label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.country-picker select {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 12px;
+    border: 1px solid #b8c6bc;
+    border-radius: 3px;
+    color: #183a32;
+    background: #fff;
+    font: inherit;
+}
+
+.country-picker select:disabled {
+    color: #53685f;
+    background: #e4e9e2;
+}
+
 .status {
-    margin: 20px 0 0;
+    min-height: 18px;
+    margin: 0;
     color: #53685f;
     font-size: 14px;
 }
