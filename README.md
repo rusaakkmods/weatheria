@@ -26,20 +26,20 @@ The goal is not to build a large production platform. The goal is to deliver the
 | Architecture | ✅ | Onion Architecture + CQRS |
 | Development strategy | ✅ | Pragmatic TDD |
 | Technology stack | ✅ | .NET 9 / ASP.NET Core |
-| Project structure | ✅ | Single .NET project with logical architecture folders |
+| Project structure | ✅ | One ASP.NET Core application project with logical architecture folders and a separate test project |
 | Domain layer | ✅ | `WeatherNote` and temperature conversion covered by tests |
-| Application / CQRS | 🟡 | Create Weather Note and country, city, and weather queries implemented |
-| Infrastructure | 🟡 | SQLite persistence, static country/city catalog, and typed OpenWeather client implemented |
-| EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + integration test |
+| Application / CQRS | ✅ | Create Weather Note command and country, city, and weather queries implemented |
+| Infrastructure | ✅ | SQLite persistence, static country/city catalog, and typed OpenWeather client implemented |
+| EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + repository and command-handler persistence tests |
 | OpenWeather integration | ✅ | Typed client implemented; configure `OpenWeather:ApiKey` before live use |
-| API | 🟡 | Country/city/weather reads and `POST /api/weather/notes` implemented and integration-tested |
-| Frontend | 🟡 | Country → City → Weather → Save Weather Note flow implemented; favorites are not implemented |
-| Automated tests | 🟡 | Unit, application, persistence, and API tests built continuously |
+| API | ✅ | Country/city/weather reads and `POST /api/weather/notes` implemented and integration-tested |
+| Frontend | ✅ | Country → City → Weather → Save Weather Note flow implemented; favorites are not implemented |
+| Automated tests | ✅ | 24 offline unit, SQLite persistence, and API integration tests pass |
 | Offline test execution | ✅ | Current tests do not require live weather API access |
-| GitHub repository | 🟡 | Repository setup in progress |
+| GitHub repository | ✅ | GitHub remote is configured; local `main` is one commit ahead of `origin/main` |
 | GitHub Actions CI | ⬜ | Planned |
 | Deployment | ⬜ | Planned |
-| Documentation | 🟡 | README + `AGENTS.md`; updated as implementation progresses |
+| Documentation | ✅ | README setup, architecture, workflows, design decisions, and root `AGENTS.md` are documented |
 
 ### Status Legend
 
