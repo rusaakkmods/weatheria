@@ -892,13 +892,22 @@ dotnet build
 dotnet test
 ```
 
+See [TEST-REPORT.md](TEST-REPORT.md) for the migration-backed note API integration test and the latest full regression result.
+
 ## Run
 
 ```powershell
-dotnet run
+dotnet run --launch-profile http
 ```
 
-The application will expose the API and frontend according to the configured ASP.NET Core environment.
+The HTTP profile serves the API and frontend at `http://localhost:5101`. The application uses `ConnectionStrings:Weatheria` from `appsettings.json` and applies pending EF Core migrations at startup, creating the SQLite schema for a fresh database.
+
+To query live weather, configure an OpenWeather API key before starting the application:
+
+```powershell
+$env:OpenWeather__ApiKey = "<your OpenWeather API key>"
+dotnet run --launch-profile http
+```
 
 ---
 
