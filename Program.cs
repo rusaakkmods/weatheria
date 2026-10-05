@@ -25,6 +25,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler();
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 
