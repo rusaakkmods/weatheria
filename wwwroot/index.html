@@ -34,6 +34,35 @@
             </div>
         </section>
 
+        <section class="weather-panel" id="weather-panel" aria-labelledby="weather-title" hidden>
+            <div class="weather-heading">
+                <div>
+                    <p class="eyebrow">Current conditions</p>
+                    <h2 id="weather-title">Weather</h2>
+                </div>
+                <p class="status" id="weather-status" role="status" aria-live="polite"></p>
+            </div>
+            <dl class="weather-grid" id="weather-metrics" hidden>
+                <div class="weather-metric"><dt>Location</dt><dd id="weather-location"></dd></div>
+                <div class="weather-metric"><dt>Time (UTC)</dt><dd><time id="weather-time"></time></dd></div>
+                <div class="weather-metric"><dt>Temperature (°F)</dt><dd id="weather-temperature-f"></dd></div>
+                <div class="weather-metric"><dt>Temperature (°C)</dt><dd id="weather-temperature-c"></dd></div>
+                <div class="weather-metric"><dt>Dew Point (°F)</dt><dd id="weather-dew-point"></dd></div>
+                <div class="weather-metric"><dt>Relative Humidity</dt><dd id="weather-humidity"></dd></div>
+                <div class="weather-metric"><dt>Wind Speed</dt><dd id="weather-wind-speed"></dd></div>
+                <div class="weather-metric"><dt>Wind Direction</dt><dd id="weather-wind-direction"></dd></div>
+                <div class="weather-metric"><dt>Visibility</dt><dd id="weather-visibility"></dd></div>
+                <div class="weather-metric"><dt>Pressure</dt><dd id="weather-pressure"></dd></div>
+                <div class="weather-metric"><dt>Sky Condition</dt><dd id="weather-sky-condition"></dd></div>
+            </dl>
+            <form class="note-form" id="weather-note-form" hidden>
+                <label for="weather-note">Weather note</label>
+                <textarea id="weather-note" name="content" rows="3" maxlength="1000" required></textarea>
+                <button id="save-note" type="submit" disabled>Save note</button>
+                <p class="status" id="note-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
         <footer class="footer">Application shell</footer>
     </main>
 </body>

@@ -33,7 +33,7 @@ The goal is not to build a large production platform. The goal is to deliver the
 | EF Core persistence | ✅ | SQLite + `WeatherNoteRepository` + integration test |
 | OpenWeather integration | ✅ | Typed client implemented; configure `OpenWeather:ApiKey` before live use |
 | API | 🟡 | Country/city/weather reads and `POST /api/weather/notes` implemented and integration-tested |
-| Frontend | 🟡 | Country and city selection wired to the API; weather display and save-note/favorite UI pending |
+| Frontend | 🟡 | Country → City → Weather → Save Weather Note flow implemented; favorites are not implemented |
 | Automated tests | 🟡 | Unit, application, persistence, and API tests built continuously |
 | Offline test execution | ✅ | Current tests do not require live weather API access |
 | GitHub repository | 🟡 | Repository setup in progress |
