@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weatheria", "Weatheria.csproj", "{D3D71796-756F-4908-8C99-8519C0D34024}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weatheria.Tests", "Weatheria.Tests\Weatheria.Tests.csproj", "{D2B40B36-F590-4E88-BD9E-18EE04412989}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{D3D71796-756F-4908-8C99-8519C0D34024}.Release|x64.Build.0 = Release|Any CPU
 		{D3D71796-756F-4908-8C99-8519C0D34024}.Release|x86.ActiveCfg = Release|Any CPU
 		{D3D71796-756F-4908-8C99-8519C0D34024}.Release|x86.Build.0 = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|x64.Build.0 = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Debug|x86.Build.0 = Debug|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|x64.ActiveCfg = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|x64.Build.0 = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2B40B36-F590-4E88-BD9E-18EE04412989}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
