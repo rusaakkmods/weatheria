@@ -971,6 +971,57 @@ A small static catalog satisfies the requirement without spending the limited im
 
 ---
 
+## Why Countries and Cities Are Not Persisted
+
+Weatheria distinguishes between **reference data** and **application-owned persistent data**.
+
+Countries and cities are treated as reference/catalog data. They are not user-owned resources and do not have an application lifecycle that requires database persistence.
+
+Therefore:
+
+```text
+Country / City
+      ↓
+Static Catalog
+```
+
+rather than:
+
+```text
+Country / City
+      ↓
+EF Core
+      ↓
+SQLite
+```
+
+This avoids introducing database tables, migrations, repositories, and seed-data management for information that does not require runtime persistence.
+
+The application-owned weather notes are different. They have a lifecycle and must survive application restarts:
+
+```text
+Weather Note
+      ↓
+IWeatherNoteRepository
+      ↓
+EF Core
+      ↓
+SQLite
+```
+
+This results in a deliberate separation:
+
+| Data | Storage | Reason |
+|---|---|---|
+| Countries | Static catalog | Reference data |
+| Cities | Static catalog | Reference data |
+| Current weather | External weather provider | External/volatile data |
+| Weather notes | SQLite via EF Core | Application-owned persistent data |
+
+This is an intentional architectural decision. **Production quality does not mean persisting every model; it means selecting an appropriate persistence strategy for each type of data.**
+
+---
+
 ## Why a Lightweight Frontend?
 
 The assessment primarily evaluates backend architecture, CQRS, persistence, testing, and integration.
